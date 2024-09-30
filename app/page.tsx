@@ -2,9 +2,9 @@
 
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaGithub, FaLinkedin, FaProjectDiagram, FaChartLine, FaUsers, FaRocket, FaCubes, FaCode } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaProjectDiagram, FaChartLine, FaUsers, FaRocket, FaCubes, FaCode, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'
 import { SiJira, SiTrello, SiAsana, SiNotion, SiSlack, SiConfluence } from 'react-icons/si'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -30,10 +30,85 @@ interface Project {
   icon: React.ElementType;
 }
 
-interface InputFieldProps {
-  label: string;
-  id: string;
-  type: string;
+const CosmicGame = () => {
+  const [score, setScore] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
+  const [stars, setStars] = useState<{ id: number; x: number; y: number }[]>([])
+
+  const addStar = useCallback(() => {
+    const newStar = {
+      id: Date.now(),
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+    }
+    setStars(prevStars => [...prevStars, newStar])
+  }, [])
+
+  const removeStar = useCallback((id: number) => {
+    setStars(prevStars => prevStars.filter(star => star.id !== id))
+  }, [])
+
+  const handleClick = (id: number) => {
+    if (!gameOver) {
+      setScore(prevScore => prevScore + 1)
+      removeStar(id)
+      addStar()
+      if (score + 1 >= 20) {
+        setGameOver(true)
+      }
+    }
+  }
+
+  const resetGame = () => {
+    setScore(0)
+    setGameOver(false)
+    setStars([])
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!gameOver && stars.length < 5) {
+        addStar()
+      }
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [addStar, gameOver, stars.length])
+
+  return (
+    <div className="text-center">
+      <h3 className="text-2xl font-semibold mb-4 gradient-text">Cosmic Star Catcher</h3>
+      <p className="mb-4">Catch the stars before they disappear!</p>
+      <div className="relative w-64 h-64 mx-auto bg-gray-800 rounded-lg overflow-hidden">
+        {stars.map(star => (
+          <motion.div
+            key={star.id}
+            className="absolute text-2xl cursor-pointer"
+            style={{ top: `${star.y}%`, left: `${star.x}%` }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={() => handleClick(star.id)}
+          >
+            ⭐
+          </motion.div>
+        ))}
+      </div>
+      <p className="text-xl my-4">Score: {score}</p>
+      {gameOver && (
+        <motion.button
+          className="cosmic-btn"
+          onClick={resetGame}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Play Again
+        </motion.button>
+      )}
+    </div>
+  )
 }
 
 export default function Home() {
@@ -45,6 +120,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home')
   const [scrollProgress, setScrollProgress] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const projects = [
     {
       title: 'Agile Transformation Initiative',
@@ -154,6 +230,7 @@ export default function Home() {
                       className={`hover:text-blue-400 transition-colors nav-link ${activeSection === item ? 'text-blue-400 border-b-2 border-blue-400 pb-1' : ''}`}
                       whileHover={{ y: -2, color: "#60a5fa" }}
                       whileTap={{ scale: 0.95 }}
+                      aria-label={`Navigate to ${item} section`}
                     >
                       {item.charAt(0).toUpperCase() + item.slice(1)}
                     </motion.a>
@@ -163,10 +240,37 @@ export default function Home() {
               <motion.button
                 className="md:hidden text-2xl"
                 whileTap={{ scale: 0.95 }}
+                aria-label="Toggle menu"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 ☰
               </motion.button>
             </div>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="md:hidden mt-4"
+              >
+                <ul className="flex flex-col space-y-4">
+                  {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+                    <li key={item}>
+                      <motion.a 
+                        href={`#${item}`} 
+                        className={`block hover:text-blue-400 transition-colors nav-link ${activeSection === item ? 'text-blue-400 border-b-2 border-blue-400 pb-1' : ''}`}
+                        whileHover={{ x: 5, color: "#60a5fa" }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label={`Navigate to ${item} section`}
+                      >
+                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                      </motion.a>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
           </nav>
         </header>
 
@@ -299,35 +403,54 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Initiate Contact</h2>
             <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
               <div className="w-full md:w-1/2">
-                <form className="section-card">
-                  <InputField label="Name" id="name" type="text" />
-                  <InputField label="Email" id="email" type="email" />
-                  <InputField label="Message" id="message" type="textarea" />
-                  <motion.button 
-                    type="submit" 
-                    className="cosmic-btn w-full"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Launch Message
-                  </motion.button>
-                </form>
+                <motion.div 
+                  className="section-card h-full"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <CosmicGame />
+                </motion.div>
               </div>
-              <div className="w-full md:w-1/2 section-card flex flex-col justify-center">
-                <h3 className="text-2xl font-semibold mb-4 gradient-text">Let&apos;s Connect</h3>
-                <p className="mb-4">I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
-                <div className="mb-4">
-                  <h4 className="text-lg font-semibold mb-2">Email</h4>
-                  <p className="text-blue-400">abdullahi.abdi@example.com</p>
-                </div>
-                <div className="mb-4">
-                  <h4 className="text-lg font-semibold mb-2">Location</h4>
-                  <p>San Francisco Bay Area, CA</p>
-                </div>
-                <div className="flex space-x-4 mt-4">
-                  <SocialLink href="https://github.com/abdul-abdi" icon={FaGithub} />
-                  <SocialLink href="https://www.linkedin.com/in/abdullahi-abdi" icon={FaLinkedin} />
-                </div>
+              <div className="w-full md:w-1/2">
+                <motion.div 
+                  className="section-card h-full"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3 className="text-2xl font-semibold mb-6 gradient-text">Cosmic Communication Portal</h3>
+                  <div className="flex items-center mb-6">
+                    <FaMapMarkerAlt className="text-2xl text-blue-400 mr-2" />
+                    <span className="text-lg">Nairobi, Kenya</span>
+                  </div>
+                  <div className="space-y-6">
+                    <CosmicContactOption
+                      icon={FaEnvelope}
+                      title="Subspace Email"
+                      description="Send a message through the digital cosmos"
+                      action="Abdullahiabdi1233@gmail.com"
+                    />
+                    <CosmicContactOption
+                      icon={FaLinkedin}
+                      title="Professional Nebula"
+                      description="Connect in the LinkedIn galaxy"
+                      action="https://www.linkedin.com/in/abdullahi-abdi"
+                    />
+                    <CosmicContactOption
+                      icon={FaGithub}
+                      title="Code Repository"
+                      description="Explore my digital constellations"
+                      action="https://github.com/abdul-abdi"
+                    />
+                    <CosmicContactOption
+                      icon={FaCalendarAlt}
+                      title="Schedule a Cosmic Meeting"
+                      description="Book a time slot in my interstellar calendar"
+                      action="https://calendly.com/abdullahiabdi1233/one-on-one"
+                    />
+                  </div>
+                </motion.div>
               </div>
             </div>
           </section>
@@ -397,13 +520,27 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   </motion.div>
 )
 
-const InputField = ({ label, id, type }: InputFieldProps) => (
-  <div className="mb-6">
-    <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-300">{label}</label>
-    {type === 'textarea' ? (
-      <textarea id={id} name={id} rows={4} className="w-full px-3 py-2 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent" required />
-    ) : (
-      <input type={type} id={id} name={id} className="w-full px-3 py-2 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent" required />
-    )}
-  </div>
+const CosmicContactOption = ({ icon: Icon, title, description, action }: { icon: React.ElementType, title: string, description: string, action: string }) => (
+  <motion.div 
+    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg transition-all duration-300 hover:bg-gray-700"
+    whileHover={{ scale: 1.05, rotate: 1 }}
+  >
+    <div className="flex-shrink-0">
+      <Icon className="text-3xl text-blue-400" />
+    </div>
+    <div className="flex-grow">
+      <h4 className="text-lg font-semibold text-blue-300">{title}</h4>
+      <p className="text-sm text-gray-400">{description}</p>
+    </div>
+    <motion.a
+      href={action.startsWith('http') ? action : `mailto:${action}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="cosmic-btn text-sm px-4 py-2"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Connect
+    </motion.a>
+  </motion.div>
 )
