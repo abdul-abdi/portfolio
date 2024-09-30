@@ -409,16 +409,6 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <CosmicGame />
-                </motion.div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <motion.div 
-                  className="section-card h-full"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
                   <h3 className="text-2xl font-semibold mb-6 gradient-text">Cosmic Communication Portal</h3>
                   <div className="flex items-center mb-6">
                     <FaMapMarkerAlt className="text-2xl text-blue-400 mr-2" />
@@ -450,6 +440,16 @@ export default function Home() {
                       action="https://calendly.com/abdullahiabdi1233/one-on-one"
                     />
                   </div>
+                </motion.div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <motion.div 
+                  className="section-card h-full"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <CosmicGame />
                 </motion.div>
               </div>
             </div>
