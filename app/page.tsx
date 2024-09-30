@@ -4,7 +4,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FaGithub, FaLinkedin, FaProjectDiagram, FaChartLine, FaUsers, FaRocket, FaCubes, FaCode } from 'react-icons/fa'
 import { SiJira, SiTrello, SiAsana, SiNotion, SiSlack, SiConfluence } from 'react-icons/si'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -20,15 +20,6 @@ const floatingAnimation = {
       repeatType: 'reverse',
       ease: 'easeInOut'
     }
-  }
-}
-
-const orbitAnimation = {
-  rotate: 360,
-  transition: {
-    duration: 20,
-    repeat: Infinity,
-    ease: "linear"
   }
 }
 
@@ -54,7 +45,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home')
   const [scrollProgress, setScrollProgress] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
-  const starFieldRef = useRef<HTMLDivElement>(null)
   const projects = [
     {
       title: 'Agile Transformation Initiative',
@@ -225,13 +215,13 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <p className="text-lg mb-4 leading-relaxed">
-                    Hello! I'm Abdullahi, a project manager with a strong background in software engineering, specializing in blockchain and web development. With over 8 years of experience, I've found my passion in bridging the gap between cutting-edge technology and effective project management.
+                    Hello! I&apos;m Abdullahi, a project manager with a strong background in software engineering, specializing in blockchain and web development. With over 8 years of experience, I&apos;ve found my passion in bridging the gap between cutting-edge technology and effective project management.
                   </p>
                   <p className="text-lg mb-4 leading-relaxed">
                     My journey began in software development, where I honed my skills in blockchain and web technologies. This technical foundation has been invaluable in my transition to project management, allowing me to lead teams with a deep understanding of the challenges and opportunities in tech projects.
                   </p>
                   <p className="text-lg leading-relaxed">
-                    Currently, I'm expanding my horizons by studying product management, aiming to blend my technical expertise with strategic product thinking. I'm excited about creating innovative solutions that not only meet technical requirements but also deliver real value to users and businesses.
+                    Currently, I&apos;m expanding my horizons by studying product management, aiming to blend my technical expertise with strategic product thinking. I&apos;m excited about creating innovative solutions that not only meet technical requirements but also deliver real value to users and businesses.
                   </p>
                 </div>
                 <div className="flex justify-center">
@@ -324,8 +314,8 @@ export default function Home() {
                 </form>
               </div>
               <div className="w-full md:w-1/2 section-card flex flex-col justify-center">
-                <h3 className="text-2xl font-semibold mb-4 gradient-text">Let's Connect</h3>
-                <p className="mb-4">I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+                <h3 className="text-2xl font-semibold mb-4 gradient-text">Let&apos;s Connect</h3>
+                <p className="mb-4">I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
                 <div className="mb-4">
                   <h4 className="text-lg font-semibold mb-2">Email</h4>
                   <p className="text-blue-400">abdullahi.abdi@example.com</p>
