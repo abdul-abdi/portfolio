@@ -2,7 +2,7 @@
 
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaGithub, FaLinkedin, FaProjectDiagram, FaChartLine, FaUsers, FaClock, FaLightbulb, FaTasks } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaProjectDiagram, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaSpaceShuttle } from 'react-icons/fa'
 import { SiJira, SiTrello, SiAsana, SiMicrosoft } from 'react-icons/si'
 import { useState, useEffect } from 'react'
 
@@ -23,6 +23,19 @@ const floatingAnimation = {
   }
 }
 
+interface Project {
+  title: string;
+  description: string;
+  link: string;
+  icon: React.ElementType;
+}
+
+interface InputFieldProps {
+  label: string;
+  id: string;
+  type: string;
+}
+
 export default function Home() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -31,30 +44,29 @@ export default function Home() {
 
   const [activeSection, setActiveSection] = useState('home')
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [currentProject, setCurrentProject] = useState(0)
   const projects = [
     {
-      title: 'E-commerce Platform Overhaul',
-      description: 'Led a cross-functional team to redesign and optimize the user experience of a major e-commerce platform, resulting in a 30% increase in conversion rates.',
-      link: 'https://github.com/abdul-abdi/ecommerce-project',
-      icon: FaChartLine,
+      title: 'Interstellar E-commerce Expansion',
+      description: 'Piloted a cross-galactic team to redesign the UX of a major e-commerce platform, resulting in a 30% surge in conversion rates across multiple star systems.',
+      link: 'https://github.com/abdul-abdi/cosmic-ecommerce',
+      icon: FaGlobeAmericas,
     },
     {
-      title: 'Agile Transformation Initiative',
-      description: 'Spearheaded the transition of a 50-person development team to Agile methodologies, improving project delivery times by 40% and team satisfaction by 25%.',
-      link: 'https://github.com/abdul-abdi/agile-transformation',
-      icon: FaUsers,
+      title: 'Agile Nebula Transformation',
+      description: 'Orchestrated the transition of a 50-person fleet to Agile methodologies, improving project delivery velocities by 40% and team satisfaction by 25 light-years.',
+      link: 'https://github.com/abdul-abdi/agile-nebula',
+      icon: FaRocket,
     },
     {
-      title: 'Product Launch Strategy',
-      description: 'Developed and executed a comprehensive launch strategy for a new SaaS product, achieving 150% of the target user acquisition in the first quarter.',
-      link: 'https://github.com/abdul-abdi/product-launch',
-      icon: FaLightbulb,
+      title: 'Quantum Product Launch',
+      description: 'Engineered and executed a multi-dimensional launch strategy for a new SaaS product, achieving 150% of the target user acquisition in the first cosmic quarter.',
+      link: 'https://github.com/abdul-abdi/quantum-launch',
+      icon: FaSpaceShuttle,
     },
     {
-      title: 'Project Management Dashboard',
-      description: 'Created a centralized project management dashboard, integrating data from multiple tools to provide real-time insights and improve decision-making efficiency.',
-      link: 'https://github.com/abdul-abdi/pm-dashboard',
+      title: 'Galactic Project Dashboard',
+      description: 'Crafted a centralized project management dashboard, integrating data from multiple galaxies to provide real-time insights and improve decision-making efficiency.',
+      link: 'https://github.com/abdul-abdi/galactic-dashboard',
       icon: FaProjectDiagram,
     },
   ]
@@ -90,172 +102,191 @@ export default function Home() {
     }
   }, [controls, inView])
 
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length)
-  }
-
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length)
-  }
-
   return (
-    <div className="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen text-white relative">
-      <div className="stars"></div>
-      <div className="twinkling"></div>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md bg-gray-900 shadow-lg">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <motion.a 
-              href="#home"
-              className="text-2xl font-bold text-blue-400"
-              whileHover={{ scale: 1.05 }}
-            >
-              AA
-            </motion.a>
-            <ul className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
-                <li key={item}>
-                  <motion.a 
-                    href={`#${item}`} 
-                    className={`hover:text-blue-400 transition-colors ${activeSection === item ? 'text-blue-400 border-b-2 border-blue-400 pb-1' : ''}`}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-            <motion.button
-              className="md:hidden text-2xl"
-              whileTap={{ scale: 0.95 }}
-            >
-              ☰
-            </motion.button>
-          </div>
-        </nav>
-      </header>
-
-      <div className="fixed left-0 top-0 h-1 bg-blue-500 z-50" style={{ width: `${scrollProgress}%` }}></div>
-
-      <main className="container mx-auto px-6 pt-24">
-        <section id="home" className="min-h-screen flex items-center justify-center">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <motion.h1 
-              className="text-7xl font-bold mb-6 text-shadow gradient-text"
-              animate={floatingAnimation}
-            >
-              Abdullahi Abdi
-            </motion.h1>
-            <p className="text-3xl mb-10 text-blue-300">Product & Project Management Professional</p>
-            <div className="flex justify-center space-x-6 mb-12">
-              <SocialLink href="https://github.com/abdul-abdi" icon={FaGithub} />
-              <SocialLink href="https://www.linkedin.com/in/abdullahi-abdi" icon={FaLinkedin} />
-            </div>
-            <motion.a
-              href="#about"
-              className="btn btn-primary text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Discover My Expertise
-            </motion.a>
-          </motion.div>
-        </section>
-
-        <section id="about" ref={ref} className="py-20">
-          <motion.div
-            initial="hidden"
-            animate={controls}
-            variants={fadeIn}
-            transition={{ duration: 0.8 }}
-            className="bg-gray-800 p-8 rounded-lg shadow-lg"
-          >
-            <h2 className="text-4xl font-bold mb-8 text-center gradient-text">About Me</h2>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-lg mb-4 leading-relaxed">
-                  I'm a seasoned Product and Project Management professional with a passion for driving innovation and delivering results. With over 8 years of experience, I specialize in Agile methodologies, strategic planning, and cross-functional team leadership.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  My approach combines data-driven decision making with a keen understanding of user needs, allowing me to consistently deliver products that exceed expectations and drive business growth.
-                </p>
-              </div>
-              <div className="flex justify-center">
-                <motion.div 
-                  className="w-64 h-64 bg-blue-500 rounded-full flex items-center justify-center text-6xl font-bold"
-                  animate={floatingAnimation}
-                >
-                  AA
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        <section id="skills" className="py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Core Competencies</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10">
-            {[
-              { icon: FaProjectDiagram, name: 'Project Management' },
-              { icon: FaChartLine, name: 'Product Strategy' },
-              { icon: FaUsers, name: 'Team Leadership' },
-              { icon: FaClock, name: 'Agile Methodologies' },
-              { icon: FaLightbulb, name: 'Innovation Management' },
-              { icon: FaTasks, name: 'Resource Optimization' },
-              { icon: SiJira, name: 'Jira' },
-              { icon: SiTrello, name: 'Trello' },
-              { icon: SiAsana, name: 'Asana' },
-              { icon: SiMicrosoft, name: 'MS Project' },
-            ].map((skill, index) => (
-              <SkillCard key={skill.name} skill={skill} index={index} />
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Key Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Get in Touch</h2>
-          <form className="max-w-md mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
-            <InputField label="Name" id="name" type="text" />
-            <InputField label="Email" id="email" type="email" />
-            <InputField label="Message" id="message" type="textarea" />
-            <motion.button 
-              type="submit" 
-              className="btn btn-primary w-full"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Send Message
-            </motion.button>
-          </form>
-        </section>
-      </main>
-
-      <footer className="bg-gray-900 py-8 mt-20">
-        <div className="container mx-auto px-6 text-center">
-          <p>&copy; 2024 Abdullahi Abdi. All rights reserved.</p>
+    <div className="min-h-screen text-white relative">
+      <div className="space-background">
+        <div className="star-field">
+          {[...Array(200)].map((_, i) => (
+            <div
+              key={i}
+              className="star"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                transform: `translateZ(${Math.random() * 1000}px)`,
+              }}
+            />
+          ))}
         </div>
-      </footer>
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="nebula"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 20}s`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="content-wrapper">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md bg-gray-900 shadow-lg">
+          <nav className="container mx-auto px-6 py-4">
+            <div className="flex justify-between items-center">
+              <motion.a 
+                href="#home"
+                className="text-2xl font-bold text-blue-400"
+                whileHover={{ scale: 1.05 }}
+              >
+                AA
+              </motion.a>
+              <ul className="hidden md:flex space-x-8">
+                {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+                  <li key={item}>
+                    <motion.a 
+                      href={`#${item}`} 
+                      className={`hover:text-blue-400 transition-colors ${activeSection === item ? 'text-blue-400 border-b-2 border-blue-400 pb-1' : ''}`}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </motion.a>
+                  </li>
+                ))}
+              </ul>
+              <motion.button
+                className="md:hidden text-2xl"
+                whileTap={{ scale: 0.95 }}
+              >
+                ☰
+              </motion.button>
+            </div>
+          </nav>
+        </header>
+
+        <div className="fixed left-0 top-0 h-1 bg-blue-500 z-50" style={{ width: `${scrollProgress}%` }}></div>
+
+        <main className="container mx-auto px-6 pt-24">
+          <section id="home" className="min-h-screen flex items-center justify-center">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              transition={{ duration: 0.8 }}
+              className="text-center"
+            >
+              <motion.h1 
+                className="text-7xl font-bold mb-6 text-shadow gradient-text"
+                animate={floatingAnimation}
+              >
+                Abdullahi Abdi
+              </motion.h1>
+              <p className="text-3xl mb-10 text-blue-300">Cosmic Product & Project Navigator</p>
+              <div className="flex justify-center space-x-6 mb-12">
+                <SocialLink href="https://github.com/abdul-abdi" icon={FaGithub} />
+                <SocialLink href="https://www.linkedin.com/in/abdullahi-abdi" icon={FaLinkedin} />
+              </div>
+              <motion.a
+                href="#about"
+                className="cosmic-btn text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Embark on the Cosmic Journey
+              </motion.a>
+            </motion.div>
+          </section>
+
+          <section id="about" ref={ref} className="py-20">
+            <motion.div
+              initial="hidden"
+              animate={controls}
+              variants={fadeIn}
+              transition={{ duration: 0.8 }}
+              className="section-card"
+            >
+              <h2 className="text-4xl font-bold mb-8 text-center gradient-text">Navigating the Business Cosmos</h2>
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <p className="text-lg mb-4 leading-relaxed">
+                    As a seasoned Cosmic Product and Project Navigator, I&apos;ve charted courses through the vast expanses of business galaxies for over a decade. My expertise in Agile methodologies, strategic planning, and cross-functional leadership has propelled numerous projects to interstellar success.
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    By harnessing the gravitational pull of data-driven insights and user-centric design, I consistently deliver products that not only meet but exceed expectations, fueling business growth and innovation across the universe of industries.
+                  </p>
+                </div>
+                <div className="flex justify-center">
+                  <motion.div 
+                    className="w-64 h-64 bg-blue-500 rounded-full flex items-center justify-center text-6xl font-bold"
+                    animate={floatingAnimation}
+                  >
+                    AA
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </section>
+
+          <section id="skills" className="py-20">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Core Competencies</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10">
+              {[
+                { icon: FaProjectDiagram, name: 'Project Management' },
+                { icon: FaChartLine, name: 'Product Strategy' },
+                { icon: FaUsers, name: 'Team Leadership' },
+                { icon: FaRocket, name: 'Agile Methodologies' },
+                { icon: FaSpaceShuttle, name: 'Innovation Management' },
+                { icon: FaGlobeAmericas, name: 'Resource Optimization' },
+                { icon: SiJira, name: 'Jira' },
+                { icon: SiTrello, name: 'Trello' },
+                { icon: SiAsana, name: 'Asana' },
+                { icon: SiMicrosoft, name: 'MS Project' },
+              ].map((skill, index) => (
+                <SkillCard key={skill.name} skill={skill} index={index} />
+              ))}
+            </div>
+          </section>
+
+          <section id="projects" className="py-20">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Constellations of Success</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project, index) => (
+                <ProjectCard key={project.title} project={project} index={index} />
+              ))}
+            </div>
+          </section>
+
+          <section id="contact" className="py-20">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Initiate Contact</h2>
+            <form className="max-w-md mx-auto section-card">
+              <InputField label="Name" id="name" type="text" />
+              <InputField label="Email" id="email" type="email" />
+              <InputField label="Message" id="message" type="textarea" />
+              <motion.button 
+                type="submit" 
+                className="cosmic-btn w-full"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Launch Message
+              </motion.button>
+            </form>
+          </section>
+        </main>
+
+        <footer className="bg-gray-900 bg-opacity-80 py-8 mt-20">
+          <div className="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Abdullahi Abdi. All rights reserved across the cosmos.</p>
+          </div>
+        </footer>
+      </div>
     </div>
   )
 }
 
-const SocialLink = ({ href, icon: Icon }) => (
+const SocialLink = ({ href, icon: Icon }: { href: string; icon: React.ElementType }) => (
   <motion.a 
     href={href}
     target="_blank" 
@@ -268,7 +299,12 @@ const SocialLink = ({ href, icon: Icon }) => (
   </motion.a>
 )
 
-const SkillCard = ({ skill, index }) => (
+interface Skill {
+  icon: React.ElementType;
+  name: string;
+}
+
+const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.5 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -281,7 +317,7 @@ const SkillCard = ({ skill, index }) => (
   </motion.div>
 )
 
-const ProjectCard = ({ project, index }) => (
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
@@ -307,7 +343,7 @@ const ProjectCard = ({ project, index }) => (
   </motion.div>
 )
 
-const InputField = ({ label, id, type }) => (
+const InputField = ({ label, id, type }: InputFieldProps) => (
   <div className="mb-6">
     <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-300">{label}</label>
     {type === 'textarea' ? (
