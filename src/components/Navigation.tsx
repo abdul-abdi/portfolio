@@ -40,7 +40,7 @@ export const Navigation = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            TKM<span className="text-primary">.</span>
+            AA<span className="text-primary">.</span>
           </motion.a>
 
           {/* Desktop Links */}

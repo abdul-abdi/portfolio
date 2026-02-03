@@ -30,8 +30,8 @@ export const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Staggered letter animation
-  const headline = "DIGITAL";
-  const subline = "ARCHITECT";
+  const headline = "AGENT";
+  const subline = "ENGINEER";
 
   return (
     <section
@@ -53,7 +53,7 @@ export const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <div className="w-12 h-px bg-primary" />
-          <span className="label-mono">Portfolio 2024</span>
+          <span className="label-mono">Abdullahi Abdi — Nairobi, Kenya</span>
         </motion.div>
 
         {/* Main Headline - Massive Typography */}
@@ -106,8 +106,8 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <p className="body-lg">
-              Crafting immersive digital experiences that blur the line between 
-              art and interface. Based in the intersection of design & code.
+              Operations-minded specialist in Context Engineering and AI Agent design. 
+              Building high-impact automation that solves systemic bottlenecks.
             </p>
           </motion.div>
 
@@ -143,9 +143,9 @@ export const HeroSection = () => {
           style={{ y: smoothMouseY }}
         >
           {[
-            { value: "5+", label: "Years" },
-            { value: "40+", label: "Projects" },
-            { value: "∞", label: "Ideas" },
+            { value: "2+", label: "Years" },
+            { value: "150+", label: "Mentored" },
+            { value: "∞", label: "Agents" },
           ].map((stat, i) => (
             <div key={i} className="text-right">
               <div className="text-4xl font-medium text-foreground">{stat.value}</div>
