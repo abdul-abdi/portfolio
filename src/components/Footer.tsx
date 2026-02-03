@@ -14,7 +14,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            © {currentYear} — Designed & Built with obsessive attention to detail
+            © {currentYear} Abdullahi Abdi — Agent Engineer & Context Engineering Specialist
           </motion.p>
 
           {/* Status */}

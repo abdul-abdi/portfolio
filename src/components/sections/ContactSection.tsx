@@ -47,7 +47,7 @@ export const ContactSection = () => {
             </motion.p>
 
             <motion.a
-              href="mailto:hello@example.com"
+              href="mailto:abdullahiabdi1233@gmail.com"
               className="btn-primary inline-flex"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -70,19 +70,19 @@ export const ContactSection = () => {
           >
             {/* Email Card */}
             <a
-              href="mailto:hello@example.com"
+              href="mailto:abdullahiabdi1233@gmail.com"
               className="glass-card-hover block p-6 group"
             >
               <p className="label-mono mb-2">Email</p>
               <p className="heading-md group-hover:text-primary transition-colors">
-                hello@example.com
+                abdullahiabdi1233@gmail.com
               </p>
             </a>
 
             {/* Location Card */}
             <div className="glass-card p-6">
               <p className="label-mono mb-2">Based In</p>
-              <p className="heading-md">San Francisco, CA</p>
+              <p className="heading-md">Nairobi, Kenya</p>
               <p className="body-sm mt-2">Open to remote worldwide</p>
             </div>
 

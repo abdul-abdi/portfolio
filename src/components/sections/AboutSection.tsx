@@ -1,23 +1,23 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const aboutText = `I craft digital experiences that blur the line between art and technology. With over a decade of obsession in design and development, I've learned that the best interfaces are the ones you don't notice—they just feel right.
+const aboutText = `I'm an operations-minded Agent Engineer specializing in Context Engineering and AI Agent design. I leverage a strong foundation in Project Management to build high-impact automation tools that solve systemic operational bottlenecks.
 
-My approach is simple: understand the human, then build for them. Every pixel, every interaction, every millisecond of animation serves a purpose. Nothing is arbitrary.
+My approach combines technical precision with strategic thinking. I'm an expert in crafting complex prompts and designing human-in-the-loop systems that streamline cross-functional workflows and ensure compliance.
 
-Currently, I'm focused on building immersive web experiences that push the boundaries of what's possible in the browser. From 3D visualizations to complex motion systems, I believe the web is the most democratic canvas we have.`;
+Currently at Nethermind, I design and deploy AI agents to manage cross-team workflows, integrating human-in-the-loop checkpoints that ensure output reliability. From automated workflow engineering to operational bottleneck removal—I bridge the gap between technical engineering and project management.`;
 
 const skills = [
-  "UI/UX",
-  "WEBFLOW",
-  "GSAP",
-  "THREE.JS",
-  "REACT",
-  "NEXT.JS",
-  "FIGMA",
-  "MOTION",
-  "SPLINE",
-  "TYPESCRIPT",
+  "CONTEXT ENG",
+  "PROMPT ENG",
+  "AI AGENTS",
+  "LLM OPS",
+  "PMO",
+  "AGILE",
+  "SOLIDITY",
+  "RUST",
+  "AUTOMATION",
+  "WEB3",
 ];
 
 export const AboutSection = () => {
@@ -95,10 +95,10 @@ export const AboutSection = () => {
           transition={{ duration: 0.8 }}
         >
           {[
-            { number: "10+", label: "Years Experience" },
-            { number: "50+", label: "Projects Shipped" },
-            { number: "15+", label: "Happy Clients" },
-            { number: "∞", label: "Cups of Coffee" },
+            { number: "2+", label: "Years Experience" },
+            { number: "20+", label: "Events Organized" },
+            { number: "150+", label: "People Mentored" },
+            { number: "∞", label: "AI Agents Built" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <span className="heading-lg gradient-text-cobalt">{stat.number}</span>
