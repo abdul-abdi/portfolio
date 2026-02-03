@@ -1,13 +1,55 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { CustomCursor } from "@/components/CustomCursor";
+import { Navigation } from "@/components/Navigation";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { WorksSection } from "@/components/sections/WorksSection";
+import { PlaygroundSection } from "@/components/sections/PlaygroundSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Footer } from "@/components/Footer";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useSmoothScroll();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      {/* Loading Screen */}
+      <AnimatePresence>
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
+      {/* Custom Cursor */}
+      <CustomCursor />
+
+      {/* Film Grain Overlay */}
+      <div className="grain-overlay" />
+
+      {/* Main Content */}
+      <AnimatePresence>
+        {!isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Navigation />
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <WorksSection />
+              <PlaygroundSection />
+              <ContactSection />
+            </main>
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
