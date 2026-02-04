@@ -97,7 +97,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Bottom Section - Split Layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-16 md:mt-24 gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mt-16 md:mt-24 gap-8 lg:gap-16">
           {/* Left - Description */}
           <motion.div
             className="max-w-md"
@@ -111,12 +111,31 @@ export const HeroSection = () => {
             </p>
           </motion.div>
 
+          {/* Center - Stats (moved from floating) */}
+          <motion.div
+            className="flex gap-8 lg:gap-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+          >
+            {[
+              { value: "2+", label: "Years" },
+              { value: "150+", label: "Mentored" },
+              { value: "∞", label: "Agents" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-3xl md:text-4xl font-medium text-foreground">{stat.value}</div>
+                <div className="label-mono text-xs">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
           {/* Right - CTA */}
           <motion.div
             className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
           >
             <a href="#works" className="btn-primary group">
               <span>Explore Works</span>
@@ -133,26 +152,6 @@ export const HeroSection = () => {
             </a>
           </motion.div>
         </div>
-
-        {/* Floating Stats */}
-        <motion.div
-          className="absolute right-6 md:right-12 lg:right-20 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-8"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          style={{ y: smoothMouseY }}
-        >
-          {[
-            { value: "2+", label: "Years" },
-            { value: "150+", label: "Mentored" },
-            { value: "∞", label: "Agents" },
-          ].map((stat, i) => (
-            <div key={i} className="text-right">
-              <div className="text-4xl font-medium text-foreground">{stat.value}</div>
-              <div className="label-mono text-xs">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
