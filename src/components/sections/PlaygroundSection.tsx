@@ -11,33 +11,27 @@ interface Experiment {
 const experiments: Experiment[] = [
   {
     id: 1,
-    title: "Context Engineering",
-    description: "Optimizing LLM reasoning with structured prompts & memory",
+    title: "AI Vibe Generation",
+    description: "Dynamic design themes powered by Gemini AI prompts",
     gradient: "from-violet-500 to-purple-400",
   },
   {
     id: 2,
-    title: "Agent Swarms",
-    description: "Multi-agent coordination & task delegation patterns",
-    gradient: "from-cyan-500 to-blue-400",
-  },
-  {
-    id: 3,
-    title: "Verifiable Agents",
-    description: "On-chain proofs for autonomous AI decision-making",
+    title: "Smart Contract IDE",
+    description: "Multi-file editor with dependency management for Solidity",
     gradient: "from-emerald-500 to-teal-400",
   },
   {
-    id: 4,
-    title: "DeFi Strategies",
-    description: "AI-powered portfolio optimization & yield farming",
-    gradient: "from-amber-500 to-orange-400",
+    id: 3,
+    title: "Live Component Preview",
+    description: "Real-time UI component rendering with theme switching",
+    gradient: "from-cyan-500 to-blue-400",
   },
   {
-    id: 5,
-    title: "Eliza Plugins",
-    description: "Custom actions for agent-to-agent negotiation",
-    gradient: "from-rose-500 to-pink-400",
+    id: 4,
+    title: "Security Analysis",
+    description: "Automated vulnerability detection for smart contracts",
+    gradient: "from-amber-500 to-orange-400",
   },
 ];
 
