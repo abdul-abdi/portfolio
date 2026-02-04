@@ -1,4 +1,4 @@
-# Kinetic Narrative — Personal Portfolio
+# Portfolio — Abdullahi Abdi
 
 A modern, animated portfolio site for Abdullahi Abdi, Agent Engineer specializing in Context Engineering and AI Agent design.
 
