@@ -8,6 +8,59 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+// Custom SVG Logo Component
+const Logo = () => (
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="transition-transform duration-300 hover:scale-110"
+  >
+    {/* Outer geometric frame */}
+    <path
+      d="M20 2L38 11V29L20 38L2 29V11L20 2Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+      className="text-foreground/30"
+    />
+    {/* Inner hexagon accent */}
+    <path
+      d="M20 8L32 14.5V27.5L20 34L8 27.5V14.5L20 8Z"
+      stroke="url(#logoGradient)"
+      strokeWidth="1.5"
+      fill="none"
+    />
+    {/* Stylized "A" */}
+    <path
+      d="M20 12L28 28H24L22.5 24.5H17.5L16 28H12L20 12Z"
+      fill="currentColor"
+      className="text-foreground"
+    />
+    {/* Inner triangle cutout for "A" */}
+    <path
+      d="M20 17L22 22H18L20 17Z"
+      fill="hsl(var(--background))"
+    />
+    {/* Accent dot */}
+    <circle
+      cx="32"
+      cy="20"
+      r="2"
+      fill="url(#logoGradient)"
+    />
+    {/* Gradient definition */}
+    <defs>
+      <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="hsl(224, 100%, 59%)" />
+        <stop offset="100%" stopColor="hsl(224, 60%, 45%)" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -35,12 +88,12 @@ export const Navigation = () => {
           {/* Logo */}
           <motion.a
             href="#"
-            className="text-lg font-medium tracking-tight"
+            className="flex items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            AA<span className="text-primary">.</span>
+            <Logo />
           </motion.a>
 
           {/* Desktop Links */}

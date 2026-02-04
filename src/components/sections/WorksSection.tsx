@@ -20,55 +20,55 @@ const projects: Project[] = [
   {
     id: 1,
     title: "VibeUI",
-    category: "UI Design Platform",
-    year: "2024",
-    tech: ["Next.js 15", "Gemini AI", "Supabase"],
+    category: "AI Design System Generator",
+    year: "2025",
+    tech: ["Next.js 16", "Gemini AI", "Tailwind CSS"],
     color: "from-violet-600/20 to-purple-600/20",
-    description: "A dynamic UI design inspiration platform that generates unique interface styles using AI. Explore different aesthetics from minimal to playful with real-time component previews.",
+    description: "AI-powered design system generator that transforms natural language prompts into production-ready systems with color palettes, typography, and exportable design tokens.",
     github: "https://github.com/abdul-abdi/vibeui",
     featured: true,
   },
   {
     id: 2,
     title: "Karibu",
-    category: "Smart Contract Analyzer",
-    year: "2024",
+    category: "Smart Contract Platform",
+    year: "2025",
     tech: ["Next.js", "ethers.js", "Hedera"],
     color: "from-emerald-600/20 to-teal-600/20",
-    description: "A smart contract development platform for EVM-compatible testnets. Features a multi-file IDE, automated security analysis, and one-click testnet deployment.",
+    description: "Web-based smart contract development platform with multi-file IDE, automated security analysis, AI assistant, and one-click testnet deployment. No wallet setup required.",
     github: "https://github.com/abdul-abdi/karibu",
     wide: true,
   },
   {
     id: 3,
-    title: "AI Vibe Generator",
-    category: "Design Tool",
-    year: "2024",
-    tech: ["TypeScript", "Gemini AI", "Framer Motion"],
+    title: "Zenith",
+    category: "AI Life Engine",
+    year: "2025",
+    tech: ["Next.js 15", "Gemini AI", "Zustand"],
     color: "from-pink-600/20 to-rose-600/20",
-    description: "An AI-powered design theme generator that creates unique visual styles from simple prompts or detailed descriptions. Part of the VibeUI ecosystem.",
-    github: "https://github.com/abdul-abdi/vibeui",
+    description: "AI-orchestrated life transformation platform that gamifies personal goals into RPG-style questlines with XP progression, adaptive difficulty, and curated learning resources.",
+    github: "https://github.com/abdul-abdi/zenith",
     tall: true,
   },
   {
     id: 4,
-    title: "Contract IDE",
-    category: "Developer Tool",
+    title: "BlockCreative",
+    category: "Web3 Marketplace",
     year: "2024",
-    tech: ["Monaco Editor", "Solidity", "TypeScript"],
+    tech: ["Next.js", "Lisk", "MongoDB"],
     color: "from-amber-600/20 to-orange-600/20",
-    description: "A browser-based multi-file IDE with syntax highlighting, dependency management, and real-time error detection for Solidity smart contracts.",
-    github: "https://github.com/abdul-abdi/karibu",
+    description: "Decentralized marketplace connecting scriptwriters with producers. Features AI script analysis, blockchain escrow payments, and NFT-based ownership rights.",
+    github: "https://github.com/abdul-abdi/blockcreative",
   },
   {
     id: 5,
-    title: "Security Scanner",
-    category: "Blockchain Security",
+    title: "Atomic Habits Tracker",
+    category: "Productivity Tool",
     year: "2024",
-    tech: ["Gemini AI", "Solidity", "Static Analysis"],
+    tech: ["JavaScript", "React", "Vercel"],
     color: "from-cyan-600/20 to-blue-600/20",
-    description: "Automated vulnerability detection for smart contracts using AI-powered analysis. Identifies common security issues before deployment.",
-    github: "https://github.com/abdul-abdi/karibu",
+    description: "Habit tracking application inspired by James Clear's methodology. Build lasting habits through small, incremental daily actions with visual progress tracking.",
+    github: "https://github.com/abdul-abdi/atomic-habits-tracker",
     wide: true,
   },
 ];
@@ -201,13 +201,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         <div className="relative z-10 h-full p-6 md:p-8 flex flex-col justify-between">
           {/* Top */}
           <div className="flex items-start justify-between">
-            <span className="label-mono">{project.category}</span>
+            <span className="label-mono text-xs sm:text-sm">{project.category}</span>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors flex-shrink-0"
               onClick={(e) => e.stopPropagation()}
+              aria-label="GitHub repository"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -222,15 +223,15 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           {/* Bottom */}
           <div>
-            <h3 className="heading-md mb-3">{project.title}</h3>
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-[-0.02em] leading-[1.2] mb-3">{project.title}</h3>
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                 <span className="body-sm">{project.year}</span>
-                <div className="flex gap-2 flex-wrap">
+                <div className="flex gap-1 sm:gap-2 flex-wrap">
                   {project.tech.slice(0, 2).map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70"
+                      className="text-[10px] sm:text-xs px-2 py-1 rounded-full bg-white/10 text-white/70"
                     >
                       {t}
                     </span>
@@ -238,10 +239,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 </div>
               </div>
               <motion.div
-                className="flex items-center gap-1 text-xs text-primary"
+                className="flex items-center gap-1 text-xs text-primary flex-shrink-0"
                 animate={{ x: isHovered ? 4 : 0 }}
               >
-                <span>View</span>
+                <span className="hidden sm:inline">View</span>
                 <ArrowUpRight className="w-3 h-3" />
               </motion.div>
             </div>

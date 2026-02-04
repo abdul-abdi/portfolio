@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { GridBackground } from "../GridBackground";
+import { AgentNetwork } from "../AgentNetwork";
 
 export const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -39,6 +40,9 @@ export const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <GridBackground />
+
+      {/* Agent Network Visualization - Top Right */}
+      <AgentNetwork />
 
       {/* Main Content */}
       <motion.div
@@ -98,22 +102,37 @@ export const HeroSection = () => {
 
         {/* Bottom Section - Split Layout */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mt-16 md:mt-24 gap-8 lg:gap-16">
-          {/* Left - Description */}
+          {/* Left - Description & CTA */}
           <motion.div
             className="max-w-md"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <p className="body-lg">
-              Operations-minded specialist in Context Engineering and AI Agent design. 
+            <p className="body-lg mb-8">
+              Operations-minded specialist in Context Engineering and AI Agent design.
               Building high-impact automation that solves systemic bottlenecks.
             </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <a href="#works" className="btn-primary group">
+                <span>Explore Works</span>
+                <motion.span
+                  className="inline-block"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </a>
+              <a href="#contact" className="btn-ghost">
+                Get in Touch
+              </a>
+            </div>
           </motion.div>
 
-          {/* Center - Stats (moved from floating) */}
+          {/* Right - Stats (Horizontal on mobile, Vertical on desktop) */}
           <motion.div
-            className="flex gap-8 lg:gap-12"
+            className="flex flex-row lg:flex-col gap-8 lg:gap-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
@@ -123,33 +142,11 @@ export const HeroSection = () => {
               { value: "150+", label: "Mentored" },
               { value: "∞", label: "Agents" },
             ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl md:text-4xl font-medium text-foreground">{stat.value}</div>
+              <div key={i} className="text-center lg:text-right">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground">{stat.value}</div>
                 <div className="label-mono text-xs">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
-
-          {/* Right - CTA */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-          >
-            <a href="#works" className="btn-primary group">
-              <span>Explore Works</span>
-              <motion.span
-                className="inline-block"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                →
-              </motion.span>
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Get in Touch
-            </a>
           </motion.div>
         </div>
       </motion.div>

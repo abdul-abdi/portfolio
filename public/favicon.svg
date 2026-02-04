@@ -1,0 +1,41 @@
+<svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer geometric frame -->
+  <path
+    d="M20 2L38 11V29L20 38L2 29V11L20 2Z"
+    stroke="#f2f2f2"
+    stroke-width="1.5"
+    fill="none"
+    opacity="0.3"
+  />
+  <!-- Inner hexagon accent -->
+  <path
+    d="M20 8L32 14.5V27.5L20 34L8 27.5V14.5L20 8Z"
+    stroke="url(#faviconGradient)"
+    stroke-width="1.5"
+    fill="none"
+  />
+  <!-- Stylized "A" -->
+  <path
+    d="M20 12L28 28H24L22.5 24.5H17.5L16 28H12L20 12Z"
+    fill="#f2f2f2"
+  />
+  <!-- Inner triangle cutout for "A" -->
+  <path
+    d="M20 17L22 22H18L20 17Z"
+    fill="#0a0a0a"
+  />
+  <!-- Accent dot -->
+  <circle
+    cx="32"
+    cy="20"
+    r="2"
+    fill="url(#faviconGradient)"
+  />
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4d7cfe" />
+      <stop offset="100%" stop-color="#3d5cb8" />
+    </linearGradient>
+  </defs>
+</svg>

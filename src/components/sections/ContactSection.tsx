@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Mail, Github, Linkedin, Twitter } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: Github, label: "GitHub", href: "https://github.com/abdul-abdi" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/abdullahi-abdi-4bb964295/" },
+  { icon: Twitter, label: "X", href: "https://x.com/Abdullahi_Ab_di" },
 ];
 
 export const ContactSection = () => {
@@ -71,28 +71,30 @@ export const ContactSection = () => {
             {/* Email Card */}
             <a
               href="mailto:abdullahiabdi1233@gmail.com"
-              className="glass-card-hover block p-6 group"
+              className="glass-card-hover block p-4 sm:p-6 group"
             >
               <p className="label-mono mb-2">Email</p>
-              <p className="heading-md group-hover:text-primary transition-colors">
+              <p className="text-lg sm:text-2xl md:text-3xl font-medium tracking-[-0.02em] leading-[1.2] group-hover:text-primary transition-colors break-all sm:break-normal">
                 abdullahiabdi1233@gmail.com
               </p>
             </a>
 
             {/* Location Card */}
-            <div className="glass-card p-6">
+            <div className="glass-card p-4 sm:p-6">
               <p className="label-mono mb-2">Based In</p>
-              <p className="heading-md">Nairobi, Kenya</p>
+              <p className="text-xl sm:text-2xl md:text-3xl font-medium tracking-[-0.02em] leading-[1.2]">Nairobi, Kenya</p>
               <p className="body-sm mt-2">Open to remote worldwide</p>
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               {socialLinks.map((social, i) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  className="glass-card-hover w-14 h-14 flex items-center justify-center rounded-xl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card-hover w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-xl"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { CustomCursor } from "@/components/CustomCursor";
+import { SkillsTicker } from "@/components/SkillsTicker";
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
@@ -25,6 +26,9 @@ const Index = () => {
 
       {/* Custom Cursor */}
       <CustomCursor />
+
+      {/* Skills Ticker - Fixed on left side */}
+      <SkillsTicker />
 
       {/* Film Grain Overlay */}
       <div className="grain-overlay" />

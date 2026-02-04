@@ -9,12 +9,13 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright */}
           <motion.p
-            className="body-sm text-center md:text-left"
+            className="body-sm text-center md:text-left text-xs sm:text-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            © {currentYear} Abdullahi Abdi — Agent Engineer & Context Engineering Specialist
+            © {currentYear} Abdullahi Abdi
+            <span className="hidden sm:inline"> — Agent Engineer & Context Engineering Specialist</span>
           </motion.p>
 
           {/* Status */}

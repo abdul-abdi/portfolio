@@ -7,19 +7,6 @@ My approach combines technical precision with strategic thinking. I'm an expert 
 
 Currently at Nethermind, I design and deploy AI agents to manage cross-team workflows, integrating human-in-the-loop checkpoints that ensure output reliability. From automated workflow engineering to operational bottleneck removal—I bridge the gap between technical engineering and project management.`;
 
-const skills = [
-  "CONTEXT ENG",
-  "PROMPT ENG",
-  "AI AGENTS",
-  "LLM OPS",
-  "PMO",
-  "AGILE",
-  "SOLIDITY",
-  "RUST",
-  "AUTOMATION",
-  "WEB3",
-];
-
 export const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -36,19 +23,6 @@ export const AboutSection = () => {
       ref={sectionRef}
       className="relative min-h-screen py-32 px-6"
     >
-      {/* Skills Ticker */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-20 overflow-hidden hidden lg:block">
-        <div className="ticker-wrapper rotate-180" style={{ writingMode: "vertical-rl" }}>
-          <div className="ticker-content">
-            {[...skills, ...skills].map((skill, i) => (
-              <span key={i} className="ticker-item">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-4xl mx-auto">
         {/* Section Label */}
         <motion.p
@@ -88,7 +62,7 @@ export const AboutSection = () => {
 
         {/* Stats */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mt-16 sm:mt-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -100,9 +74,9 @@ export const AboutSection = () => {
             { number: "150+", label: "People Mentored" },
             { number: "∞", label: "AI Agents Built" },
           ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <span className="heading-lg gradient-text-cobalt">{stat.number}</span>
-              <p className="label-mono mt-2">{stat.label}</p>
+            <div key={i} className="text-center p-4 sm:p-0">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-0.02em] leading-[1.1] gradient-text-cobalt">{stat.number}</span>
+              <p className="label-mono mt-2 text-[10px] sm:text-xs">{stat.label}</p>
             </div>
           ))}
         </motion.div>
